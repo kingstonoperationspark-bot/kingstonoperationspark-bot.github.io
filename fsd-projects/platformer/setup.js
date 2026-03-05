@@ -90,7 +90,7 @@ let canvas;
 let ctx;
 
 // setup function variable
-let setup;
+let setup;              
 
 let halleImage;
 let animationDetails = {};
@@ -102,4 +102,8 @@ var collectableList = {
   kennedi: { image: "images/collectables/kennedi-head.png" },
   max: { image: "images/collectables/max-head.png" },
   steve: { image: "images/collectables/steve-head.png" },
+  Uncomfortable: { image: "images/collectables/troll-face-concerned.png" }, 
+  Knight: { image: "images/collectables/Ancient_Mask.png" },
+  Hornet: { image: "images/collectables/hornet.png" },
 };
+   
