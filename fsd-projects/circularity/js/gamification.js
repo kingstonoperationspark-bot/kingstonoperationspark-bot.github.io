@@ -584,7 +584,7 @@ function updatePlayer2() {
     // Calculate new size (area-based growth)
     var absorberArea = Math.PI * Math.pow(absorber.radius, 2);
     var absorbedArea = Math.PI * Math.pow(absorbed.radius || 10, 2);
-    var newArea = absorberArea + absorbedArea * 0.3; // Gain 30% of absorbed area for faster growth
+    var newArea = absorberArea + absorbedArea * 0.2; // Gain 30% of absorbed area for faster growth
     var newRadius = Math.sqrt(newArea / Math.PI);
 
     // Update absorber size

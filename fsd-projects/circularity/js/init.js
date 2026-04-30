@@ -21,21 +21,26 @@ var init = function (window) {
 
     // TODO 2 : Create a function that draws a circle
     function drawCircle() {
+       
       circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
       physikz.addRandomVelocity(circle, canvas, 5, 5);
       view.addChild(circle);
       circles.push(circle);
-    }
+    } 
 
     // TODO 3 : Call the drawCircle() function
-    drawCircle()
-    drawCircle()
-    drawCircle()
-    drawCircle()
-    drawCircle()
-
+     Gamification.init({
+        canvas: canvas,
+        view: view,
+        draw: draw,
+        physikz: physikz,
+        circles: circles,
+        game: game,
+      });
     // TODO 7 : Use a loop to create multiple circles
-
+    for (var i = 0; i < 50; i += 1) {
+      drawCircle();
+    }
     ///////////////////
     // PROGRAM LOGIC //
     ///////////////////
@@ -47,13 +52,15 @@ var init = function (window) {
         */
     function update() {
       // TODO 4 : Update the position of each circle using physikz.updatePosition()
-      physikz.updatePosition(circle[0])
-      physikz.updatePosition(circle[1])
-      physikz.updatePosition(circle[2])
-      physikz.updatePosition(circle[3])
-      physikz.updatePosition(circle[4])
+
       // TODO 5 : Call game.checkCirclePosition() on your circles
+
       // TODO 8 / TODO 9 : Iterate over the array
+      for (var i = 0; i < 50; i++) {
+        game.checkCirclePosition(circles[i]);
+        physikz.updatePosition(circles[i]);
+      }
+      Gamification.update();
     }
 
     /* 
@@ -65,10 +72,16 @@ var init = function (window) {
       // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
       if (circle.x > canvas.width) {
         circle.x = 0;
+      } else if (circle.x <= 0) {
+        circle.x = canvas.width;
       }
 
       // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-
+      if (circle.y > canvas.height) {
+        circle.y = 0;
+      } else if (circle.y <= 0) {
+        circle.y = canvas.height;
+      }
       // YOUR TODO 6 CODE ENDS HERE //////////////////////////
     };
 
