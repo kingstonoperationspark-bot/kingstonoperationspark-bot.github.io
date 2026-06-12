@@ -20,10 +20,27 @@ function runProgram(){
   /* 
   This section is where you set up event listeners for user input.
   For example, if you wanted to handle a click event on the document, you would replace 'eventType' with 'click', and if you wanted to execute a function named 'handleClick', you would replace 'handleEvent' with 'handleClick'.
+  
 
   Note: You can have multiple event listeners for different types of events.
   */
-  $(document).on('eventType', handleEvent);                          
+  $(document).on('keydown', handleKeyDown);  
+  
+  const KEY = {
+    ENTER: 13,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40,
+  }
+
+  var walker = {
+    x: 0,
+    y: 0,
+    speedX: 0,
+    speedY: 0,
+  }
+  console.log(walker.x, walker.y);
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -34,7 +51,7 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    
+    repositionGameItem()
 
   }
   
@@ -44,7 +61,17 @@ function runProgram(){
   
   Note: You can have multiple event handlers for different types of events.
   */
-  function handleEvent(event) {
+  function handleKeyDown(event) {
+    console.log(event.which);
+    if (event.which === KEY.LEFT) {
+      console.log("left pressed")
+    } else if (event.which === KEY.UP) {
+      console.log("up pressed")
+    } else if (event.which === KEY.RIGHT) {
+      console.log("right pressed")
+    } else if (event.which === KEY.DOWN) {
+      console.log("down pressed")
+    }
 
   }
 
@@ -59,6 +86,12 @@ function runProgram(){
 
     // turn off event handlers
     $(document).off();
+  }
+
+  function repositionGameItem(){
+    walker.speedX + walker.x;
+    walker.speedY + walker.y;
+
   }
   
 }
