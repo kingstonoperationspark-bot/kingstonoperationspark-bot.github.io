@@ -7,6 +7,7 @@ function runProgram(){
   //////////////////////////// SETUP /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
+
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
@@ -25,6 +26,7 @@ function runProgram(){
   Note: You can have multiple event listeners for different types of events.
   */
   $(document).on('keydown', handleKeyDown);  
+   $(document).on('keyup', handleKeyUp);  
   
   const KEY = {
     ENTER: 13,
@@ -37,8 +39,8 @@ function runProgram(){
   var walker = {
     x: 0,
     y: 0,
-    speedX: 0,
-    speedY: 0,
+    speedX: 1,
+    speedY: 1,
   }
   console.log(walker.x, walker.y);
 
@@ -52,6 +54,8 @@ function runProgram(){
   */
   function newFrame() {
     repositionGameItem()
+    wallCollision()
+    redrawGameItem()
 
   }
   
@@ -65,12 +69,34 @@ function runProgram(){
     console.log(event.which);
     if (event.which === KEY.LEFT) {
       console.log("left pressed")
+      walker.speedX -= 5
     } else if (event.which === KEY.UP) {
       console.log("up pressed")
+      walker.speedY -= 5
     } else if (event.which === KEY.RIGHT) {
       console.log("right pressed")
+      walker.speedX += 5
     } else if (event.which === KEY.DOWN) {
       console.log("down pressed")
+      walker.speedY += 5
+    }
+
+  }
+
+  function handleKeyUp (event){
+    
+    if (event.which === KEY.LEFT) {
+      console.log("left released")
+      walker.speedX = 0
+    } else if (event.which === KEY.UP) {
+      console.log("up released")
+      walker.speedY = 0
+    } else if (event.which === KEY.RIGHT) {
+      console.log("right released")
+      walker.speedX = 0
+    } else if (event.which === KEY.DOWN) {
+      console.log("down released")
+      walker.speedY = 0
     }
 
   }
@@ -89,9 +115,28 @@ function runProgram(){
   }
 
   function repositionGameItem(){
-    walker.speedX + walker.x;
-    walker.speedY + walker.y;
+    walker.x = walker.x + walker.speedX;
+    walker.y = walker.y + walker.speedY;
 
   }
-  
+
+  function redrawGameItem(){
+    $("#walker").css("left", walker.x);
+    $("#walker").css("top", walker.y);
+    console.log("Walker position:", walker.x, walker.y);
+
+  }
+
+  function wallCollision()
+{
+  if (walker.x <= 0){
+    walker.x -= walker.speedX;
+  } else if (walker.y <= 0){
+    walker.y -= walker.speedY;
+  } else if (walker.x >= $("#board").width() - 40){
+    walker.x -= walker.speedX;
+  } else if (walker.y >= $("#board").height() - 40){
+    walker.y -= walker.speedY;
+  }
+}  
 }
