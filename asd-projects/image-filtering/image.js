@@ -51,6 +51,7 @@ function render(element, image){
               .css('background-color', color)
     }
   }
+  applyFilter()
 }
 
 // this function converts an RGB string into an array for easy manipulation
@@ -80,4 +81,20 @@ function reset() {
       image[i][j] = og[i][j];
     }
   }
+}
+
+function applyFilter (){
+  for (var i = 0; i <= image.length; i++){
+    for (var l = 0; l <= image[i].length; l++){
+      console.log(image[i][l]);
+      var pixel = image[i][l]
+      var pixelArray = rgbStringToArray(pixel);
+      var updatedPixel = rgbArrayToString(pixelArray);
+      image[i][l] = updatedPixel
+// This is where I’ll modify the color values later
+      pixelArray[RED] = 200
+     
+    }
+  }
+
 }

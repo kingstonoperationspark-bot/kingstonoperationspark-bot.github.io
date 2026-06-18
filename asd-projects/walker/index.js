@@ -133,9 +133,9 @@ function runProgram(){
     walker.x -= walker.speedX;
   } else if (walker.y <= 0){
     walker.y -= walker.speedY;
-  } else if (walker.x >= $("#board").width() - 40){
+  } else if (walker.x >= $("#board").width() - 50){
     walker.x -= walker.speedX;
-  } else if (walker.y >= $("#board").height() - 40){
+  } else if (walker.y >= $("#board").height() - 50){
     walker.y -= walker.speedY;
   }
 }  
